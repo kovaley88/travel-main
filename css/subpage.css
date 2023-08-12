@@ -91,6 +91,54 @@ a {
   font-size: 34px;
   line-height: 1.6;
 }
+
+.header__hamburger {
+  z-index: 5;
+  display: block;
+  position: relative;
+  width: 30px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.header__hamburger span,
+.header__hamburger::before,
+.header__hamburger::after {
+  content: "";
+  left: 0;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  transition: all 0.3s ease 0s;
+  background-color: #5f2eea;
+}
+
+.header__hamburger::before {
+  top: 0;
+}
+.header__hamburger::after {
+  bottom: 0;
+}
+.header__hamburger span {
+  top: 50%;
+  transform: scale(1) translate(0px, -50%);
+}
+
+/* Анимируем бургер, убираем среднюю полоску */
+.header__hamburger._active span {
+  transform: scale(0) translate(0px, -50px);
+}
+
+.header__hamburger._active::before {
+  top: 50%;
+  transform: rotate(-45deg) translate(0px, -50%);
+}
+
+.header__hamburger._active::after {
+  bottom: 50%;
+  transform: rotate(45deg) translate(0px, 50%);
+}
+
 /* filter ---------------------------------- */
 
 .filter {
