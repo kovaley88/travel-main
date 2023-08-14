@@ -190,3 +190,94 @@ new Swiper('.image-slider', {
 
 });
 
+// hamberger --------------------------------------------------
+
+// Проверка на каком устройстве открыта страница
+const isMobile = {
+    Android: function () {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackRerry: function () {
+        return navigator.userAgent.match(/BlackRerry/i);
+    },
+    iOs: function () {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function () {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function () {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function () {
+        return (
+            isMobile.Android() ||
+            isMobile.BlackRerry() ||
+            isMobile.iOs() ||
+            isMobile.Opera() ||
+            isMobile.Windows());
+    }
+};
+
+// Делаем проверку
+if (isMobile.any()) {
+    document.body.classList.add('_touch');
+
+
+    // При клике на стрелку показываем под-меню
+    // когда определилось устройство с touch-screen
+    let menuArrows = document.querySelectorAll('.menu__services--open');
+    if (menuArrows.length > 0) {
+        for (let index = 0; index < menuArrows.length; index++) {
+            const menuArrow = menuArrows[index];
+            menuArrow.addEventListener("click", function (e) {
+                menuArrow.classList.toggle('_active');
+            });
+        }
+    }
+
+
+    let menuArrows2 = document.querySelectorAll('.menu__continents--open');
+    if (menuArrows2.length > 0) {
+        for (let index = 0; index < menuArrows2.length; index++) {
+            const menuArrow2 = menuArrows2[index];
+            menuArrow2.addEventListener("click", function (e) {
+                menuArrow2.classList.toggle('_active');
+            });
+        }
+    }
+
+} else {
+    document.body.classList.add('_pc');
+}
+
+// прокрутка при клике
+
+const menuLinks = document.querySelectorAll('.menu__link[data-goto]');
+if (menuLinks.length > 0) {
+    menuLinks.forEach(menuLink => {
+        menuLink.addEventListener("click", onMenuLinkClick);
+    });
+    function onMenuLinkClick(e) {
+        const menuLink = e.target;
+        if (menuLink.dataset.goto && document.querySelector(menuLink.dataset.goto)) {
+            const gotoBlock = document.querySelector(menuLink.dataset.goto);
+            const gotoBlockValue = gotoBlock.getBoundingClientRect().top + pageYOffset - document.querySelector('header').offsetHeight;
+
+            window.scrollTo({
+                top: gotoBlockValue,
+                behavior: "smooth"
+            });
+            e.prevantDefault();
+        }
+    }
+}
+
+//////////
+
+
+document.querySelector(".header__hamburger").addEventListener("click", function () {
+    this.classList.toggle("header__hamburger--open");
+    document.querySelector(".header__logo").classList.toggle("header__logo--white");
+    document.querySelector(".menu").classList.toggle("menu--open");
+});

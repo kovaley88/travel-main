@@ -675,17 +675,13 @@ a {
   }
 
   .contact__title {
-    /* color: #fff;
-    text-align: center;
-    font-feature-settings: "clig" off, "liga" off; */
-
-    /* Mobile / Display Large Bold */
     font-family: Poppins;
     font-size: 48px;
     font-style: normal;
     font-weight: 700;
-    line-height: 50px; /* 104.167% */
+    line-height: 50px;
     letter-spacing: 1px;
+    padding-inline: 10px;
   }
   .contact__btn {
     width: 335px;
