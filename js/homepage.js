@@ -167,9 +167,9 @@ new Swiper('.image-slider', {
             slidesPerView: 2,
 
         },
-        // 992: {
-        //     slidesPerView: 2
-        // },
+        992: {
+            slidesPerView: 2
+        },
     },
 
     // Брейк поинты (адаптив)
@@ -251,29 +251,7 @@ if (isMobile.any()) {
     document.body.classList.add('_pc');
 }
 
-// прокрутка при клике
-
-const menuLinks = document.querySelectorAll('.menu__link[data-goto]');
-if (menuLinks.length > 0) {
-    menuLinks.forEach(menuLink => {
-        menuLink.addEventListener("click", onMenuLinkClick);
-    });
-    function onMenuLinkClick(e) {
-        const menuLink = e.target;
-        if (menuLink.dataset.goto && document.querySelector(menuLink.dataset.goto)) {
-            const gotoBlock = document.querySelector(menuLink.dataset.goto);
-            const gotoBlockValue = gotoBlock.getBoundingClientRect().top + pageYOffset - document.querySelector('header').offsetHeight;
-
-            window.scrollTo({
-                top: gotoBlockValue,
-                behavior: "smooth"
-            });
-            e.prevantDefault();
-        }
-    }
-}
-
-//////////
+///////////
 
 
 document.querySelector(".header__hamburger").addEventListener("click", function () {
